@@ -55,6 +55,7 @@
 html {
   overflow: hidden;
   overscroll-behavior-y: contain;
+  touch-action: manipulation;
 }
 
 *,

@@ -1,22 +1,54 @@
 <script setup>
 const props = defineProps(['user'])
+const emits = defineEmits(['clicked'])
 
 const imagePath = '/images/' + props.user.image
+
+function userClicked() {
+  emits('clicked', props.user)
+}
 </script>
 
 <template>
-  <div class="container">
-    <div class="image-cropper">
-      <img :src="imagePath" class="rounded" />
+  <button @click="userClicked">
+    <div class="container">
+      <div class="image-cropper">
+        <img :src="imagePath" />
+      </div>
+      <label class="user-name">{{ user.name }}</label>
     </div>
-    <div class="user-name">{{ user.name }}</div>
-  </div>
+  </button>
 </template>
 
 <style scoped>
 .container {
   display: inline-block;
+  border-radius: 20px;
+  padding: 40px;
 }
+
+button {
+  display: block;
+  background-color: transparent;
+  border: 0;
+  border-radius: 20px;
+  padding: 10px;
+  width: 100%;
+  color: hsla(160, 100%, 37%, 1);
+}
+
+button:hover {
+  color: white;
+  background-color: hsla(160, 100%, 37%, 1);
+  transition: 0.1s;
+}
+
+button:active {
+  color: white;
+  background-color: rgb(0, 137, 91);
+  transition: 0.1s;
+}
+
 
 .user-name {
   margin: 0.5rem;
@@ -45,7 +77,13 @@ img {
   .container {
     display: grid;
     width: 100%;
+    padding: 10px;
     grid-template-columns: 1.3fr 1fr;
+  }
+
+  button {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .image-cropper {

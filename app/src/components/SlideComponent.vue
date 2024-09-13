@@ -9,7 +9,7 @@ var rangeWrapper = ref(null) // document.querySelector('.range__wrapper');
 var rangeInput = ref(null)// document.querySelector('.range__input');
 var rangeValues = ref(null)//document.querySelector('.range__values');
 var rangeValueNumberTop = ref(null)//document.querySelector('.range__value__number--top');
-var rangeValueNumberBottom = ref(null) // document.querySelector('.range__value__number--bottom');
+// var rangeValueNumberBottom = ref(null) // document.querySelector('.range__value__number--bottom');
 var rangeSliderPaths1 = ref(null)//document.querySelectorAll('.range__slider__path');
 var rangeSliderPaths2 = ref(null)//document.querySelectorAll('.range__slider__path');
 
@@ -20,7 +20,7 @@ onMounted(() => {
     var mouseDy = 0;
     var mouseDyLimit = 150;
     var mouseDyFactor = 3;
-    var max = 60;
+    var max = 28;
     var rangeMin = parseInt(rangeInput.value.min);
     var rangeMax = parseInt(rangeInput.value.max);
     var rangeValue = parseInt(rangeInput.value.value);
@@ -51,13 +51,13 @@ onMounted(() => {
         // Update `input` value
         rangeInput.value.value = rangeValue;
         // Update numbers values
-        rangeValueNumberTop.value.innerText = max - rangeValue;
-        rangeValueNumberBottom.value.innerText = rangeValue;
+        rangeValueNumberTop.value.innerText = rangeValue;
+        // rangeValueNumberBottom.value.innerText = rangeValue;
         // Translate range values
         rangeValues.value.style.transform = 'translateY(' + (rangeHeight - currentY) + 'px)';
         // Apply corresponding `scale` to numbers
         rangeValueNumberTop.value.style.transform = 'scale(' + (1 - scale) + ')';
-        rangeValueNumberBottom.value.style.transform = 'scale(' + (1 - (scaleMax - scale)) + ')';
+        // rangeValueNumberBottom.value.style.transform = 'scale(' + (1 - (scaleMax - scale)) + ')';
 
         // Some maths calc
         if (Math.abs(mouseDy) < mouseDyLimit) {
@@ -168,7 +168,7 @@ onMounted(() => {
     <div ref="rangeWrapper" class="range__wrapper">
         <!-- The real input, it will be hidden, but updated properly with Javascript -->
         <!-- For a production usage, you may want to add a label, and also put it inside a form -->
-        <input ref="rangeInput" class="range__input" type="range" min="0" max="40" value="8" />
+        <input ref="rangeInput" class="range__input" type="range" min="1" max="24" value="8" />
 
         <!-- SVG elements -->
         <svg class="range__slider" width="320px" height="480px" viewBox="0 0 320 480">
@@ -213,17 +213,8 @@ onMounted(() => {
                 <span ref="rangeValueNumberTop" class="range__value__number range__value__number--top"></span>
                 <!-- Some text for the `top` value -->
                 <span class="range__value__text range__value__text--top">
-                    <span>Points</span>
+                    <span>Hours</span>
                     <span>You Need</span>
-                </span>
-            </div>
-            <div class="range__value range__value--bottom">
-                <!-- This element will be updated with the `inputValue` -->
-                <span ref="rangeValueNumberBottom" class="range__value__number range__value__number--bottom"></span>
-                <!-- Some text for the `bottom` value -->
-                <span class="range__value__text range__value__text--bottom">
-                    <span>Points</span>
-                    <span>You Have</span>
                 </span>
             </div>
         </div>
